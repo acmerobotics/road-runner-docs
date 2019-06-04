@@ -9,6 +9,7 @@
 * [Feedforward Control](tour/feedforward-control.md)
 * [Motion Profiling](tour/motion-profiling.md)
 * [Coordinate Frames](tour/coordinate-frame.md)
+* [Parametric Paths](tour/parametric-paths.md)
 
 ## Advanced
 
