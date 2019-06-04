@@ -4,9 +4,9 @@ The previous discussion of motion profiling wraps up motion control for mechanis
 
 In order to describe 2D motion, we need a consistent global coordinate frame. Within this global frame, the robot's position can be described using typical Cartesian $$(x,y)$$ coordinates. In addition to the linear position, the robot has a heading $$\theta$$ defined as the angle between the front of the robot and the global $$x$$ axis. The position and heading together constitute the robot's pose.
 
-![](../.gitbook/assets/field%20%281%29.png)
+![](../.gitbook/assets/field.png)
 
-In addition to the global coordinate frame, there is a robot coordinate frame that moves along with the robot. Paths are more conveniently described in the global frame while robot velocities are more conveniently described in the robot frame. To accommodate this, Road Runner constantly switches between frames.$$R(-\theta) =\begin{bmatrix}\operatorname & 0 \\ 0 & 0\end{bmatrix}$$
+In addition to the global coordinate frame, there is a robot coordinate frame that moves along with the robot. Paths are more conveniently described in the global frame while robot velocities are more conveniently described in the robot frame. To accommodate this, Road Runner constantly switches between frames.
 
 ![Transformation of a velocity vector between frames](../.gitbook/assets/transform.png)
 

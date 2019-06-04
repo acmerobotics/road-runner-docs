@@ -84,7 +84,7 @@ However, as we will see, a better solution to this issue is to determine the cau
 
 Here's a chart summarizing the effects of each gain on the response:
 
-![](../.gitbook/assets/unknown.png)
+![](../.gitbook/assets/pidtuning.png)
 
 If you want a semi-automated approach to tuning, check out the [Ziegler-Nichols method](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method).
 
