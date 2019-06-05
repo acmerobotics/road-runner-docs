@@ -2,6 +2,8 @@
 
 The previous discussion of motion profiling wraps up motion control for mechanisms with one degree of freedom. The remainder of the tour will be extending these ideas to 2D robot movement.
 
+## Basics
+
 In order to describe 2D motion, we need a consistent global coordinate frame. Within this global frame, the robot's position can be described using typical Cartesian $$(x,y)$$ coordinates. In addition to the linear position, the robot has a heading $$\theta$$ defined as the angle between the front of the robot and the global $$x$$ axis. The position and heading together constitute the robot's pose.
 
 2D vectors and poses are built into the library and serve as primtiives for many other classes.
@@ -25,6 +27,8 @@ val pose = Pose2d(position, theta)
 ![](../.gitbook/assets/field.png)
 
 In addition to the global coordinate frame, there is a robot coordinate frame that moves along with the robot. Paths are more conveniently described in the global frame while robot velocities are more conveniently described in the robot frame. To accommodate this, Road Runner constantly switches between frames.
+
+## Transformations
 
 ![Transformation of a velocity vector between frames](../.gitbook/assets/transform.png)
 

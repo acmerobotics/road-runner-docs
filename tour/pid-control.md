@@ -2,6 +2,8 @@
 
 Proportional-Integral-Derivative \(PID\) Control is an extremely popular method for controlling various actuators on hobbyist and industrial robots alike. Its popularity is due both to its simplicity and effectiveness for a wide range of systems. As such, it is an important stepping stone to more sophisticated techniques.
 
+## Basics
+
 Before we dive into the mechanics of PID, it is useful to define some terminology. Every control problem arises from a real world mechanism or system with inputs and outputs. These systems are often referred to as plants. While a particular system may have multiple inputs and outputs, we will restrict our attention to single-input, single-output \(SISO\) plants. In this context, the objective of PID control is to adjust the input variable to yield the desired output \(often also called the setpoint\). PID control is a form of feedback control which simply involves using measurements of the output to determine the input \(we'll see the complementary technique of feedforward control in the next section\). This is accomplished by minimizing error \(the difference between the current output and the setpoint\).
 
 To see this in action, consider the problem of controlling the position of a linear slide actuated by a spool attached to a motor. In this example, the linear slide system is the plant, the single input is the motor voltage, and the single output is the linear slide position.
@@ -69,6 +71,8 @@ controller.setInputBounds(0.0, 2.0 * Math.PI)
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 {% endhint %}
+
+## Tuning
 
 The real art of PID control is tuning the gains. This is traditionally done manually using a graph of the error over time or merely observing the plant's behavior directly. Conventionally, one starts with a pure P loop. With a high enough gain, the output should oscillate around the setpoint. If the controller is unable to reach the setpoint over a long period of time \(this is called steady-state error\), it may help to add more integral action. This is often the case with static friction or inertia. Once the oscillations are centered around the setpoint, a larger derivative gain can dampen the oscillations while still reaching the setpoint in the same amount of time.
 

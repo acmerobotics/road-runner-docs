@@ -2,6 +2,8 @@
 
 While PID or bang-bang control works well for many plants, we can do better. One of the biggest advantages of PID control is its ignorance of the underlying plant. The same three control actions are employed regardless of the relationship between the input and output variables. In retrospect, it's somewhat remarkable that PID in all its simplicity is so effective. Nevertheless, there are situations in which knowledge of the plant dynamics can help supplement PID control alone.
 
+## Gravity Feedforward
+
 For example, consider the problem of controlling the position of an elevator. A simple P controller may help to get close to the desired position. However, close to the septoint, the elevator will oscillate or stop short with a significant steady-state error. This could be addressed by adding some integral action to the controller. In theory, it will provide the necessary boost to reach the target position. Though as we know, integral terms can easily cause instability and need to be carefully tuned to prevent amplified oscillations.
 
 There is a better solution to this problem. For a minute, consider the cause of this error. The culprit is clear from our physical intuition: gravity. When the elevator is in use, gravity is always exerting a constant downward force given by $$F = mg$$. Instead of letting an integral term do the work, we can directly compensate for the gravitational force. This can be achieved by adding a constant factor $$k_G$$ to the voltage that is sent to the motors. 
@@ -30,6 +32,8 @@ val controller = new PIDFController(coeffs, kF = { kG })
 {% endcode-tabs %}
 
 That's the essence behind feedforward: design your control inputs using a model of the plant.
+
+## DC Motor Feedforward
 
 In the realm of wheeled mobile robots, DC motors are important actuators on the drivetrain and various end effector. To a good approximation, DC motors are linear in normal operating ranges and ignoring friction. Assuming negligible inductance, the voltage necessary for a given velocity and acceleration is $$V_{app} = k_v \cdot v + k_a \cdot a$$ . \(A keen reader will notice that $$v$$ may be more aptly replaced by $$\omega$$ to better represent the rotary motion of a conventional motor. While this may be true, simple plants with DC motors often involve linear motion, and it's more convenient to fit a single constant for the whole transmission than convert for each transfer of energy. The concern is more pedantic than pragmatic.\) Finally, it is useful in practice to add a final term for friction: $$V_{app} = k_v \cdot v + k_a \cdot a + k_{static}$$ \(more details on DC motor feedforward can be found [here](https://www.chiefdelphi.com/t/paper-frc-drivetrain-characterization/160915)\). 
 

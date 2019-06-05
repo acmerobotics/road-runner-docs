@@ -13,7 +13,7 @@
 * [Trajectories](tour/trajectories.md)
 * [Drive Kinematics](tour/drive-kinematics.md)
 
-## Advanced
+## Quickstart
 
-* [Untitled](advanced/untitled.md)
-
+* [Introduction](quickstart/introduction.md)
+* [Tuning](quickstart/tuning.md)

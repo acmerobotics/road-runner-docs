@@ -1,4 +1,8 @@
+# Parametric Paths
+
 With the coordinate transformations, paths can be specified at the global level (i.e., not 'go forward 60 inches and turn 45 degrees right'). Complex, abstract paths can now be devised without having to explicitly consider the robot velocities necessary to execute them. 
+
+## Lines
 
 To describe these paths, we will use parametric curves. For our purposes, these curves are composed of two single variable functions $$x(t)$$ and $$y(t)$$ that together determine the path shape. Parametric lines take the form $$x(t) = x_0 + v_x \, t$$, $$y(t) = y_0 + v_y \, t$$. This can be represented more conveniently in the notation of vectors: $$\vec{r}(t) = \vec{x_0} + \vec{v} \, t$$ (there is an intimate relationship between parametrics and vectors; they're often called vector-valued functions). Lines and other parametric functions are often defined over the whole $$t$$ domains; however, for the purposes of constructing finite paths, the domain is constrained. Road Runner assumes parametric curves are only defined on $$[0, 1]$$. 
 
@@ -25,6 +29,8 @@ val position = line[0.5]
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+## Splines
 
 In addition to lines, there are built-in quintic splines. Unlike lines, splines can assume a variety of curved shapes. The shape of the spline is controlled by waypoints on either end that specify the desired position, first derivative, and second derivative.
 
@@ -53,6 +59,8 @@ val spline = QuinticSpline(
 {% endcode-tabs %}
 
 As we'll see soon, there are more convenient methods of customizing splines without specifying derivatives directly.
+
+## Heading Interpolation
 
 For tank drives, specifying the $$(x, y)$$ position of the robot at every point along the path is sufficient to determine the full pose. In the literature, this is called the nonholonomic constraint and mandates that the robot most be oriented tangent to the path. However, for so-called holonomic drives, the heading is independent of the translational velocity, enabling more complex manuevers. For instance, a holonomic may traverse a spline while rotating or maintaining a constant heading (relative to the global frame).
 
@@ -89,6 +97,8 @@ val path = Path(segment)
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+## `PathBuilder`
 
 Now this process of creating `Path`s is a bit tedious, and there is often duplicate information required to connect the segments. To make things easier, the `PathBuilder` class provides a more streamlined interface for `Path` construction.
 

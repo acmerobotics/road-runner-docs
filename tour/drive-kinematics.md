@@ -1,4 +1,8 @@
+# Drive Kinematics
+
 Drive kinematics are often overlooked in part due to their surface simplicity. Intuitively, for a tank drive, everyone knows that you provide the same voltage to both sides to go forward and opposite voltages to spin. Nevertheless, we'll present a method for deriving tank kinematics.
+
+## Tank Kinematics
 
 Consider the following configuration of a tank robot traveling with constant forward and angular velocity. Throughout this discussion, we will assume that the drive has one wheel per side (this is generally accurate although certain configuration may have significant scrub/friction).
 
