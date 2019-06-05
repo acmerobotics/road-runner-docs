@@ -10,6 +10,7 @@
 * [Motion Profiling](tour/motion-profiling.md)
 * [Coordinate Frames](tour/coordinate-frame.md)
 * [Parametric Paths](tour/parametric-paths.md)
+* [Trajectories](tour/trajectories.md)
 
 ## Advanced
 
