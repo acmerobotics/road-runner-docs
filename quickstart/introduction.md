@@ -1,8 +1,7 @@
 # Introduction
 
-Robots are equipped with all sorts of actuators and mechanisms that require software. In some situations, these needs may be adequately addressed through teleoperation and a human driver. However, in the majority of cases, full or partial automation is crucial. For this purpose, Road Runner provides robust solutions for motion planning and control. 
+Part of the goal of Road Runner is to make advanced motion control techniques more accessible. However, for several reasons, the library is not immediately ready for use out of the box. For one, the Road Runner core intentionally has no dependencies on the [FTC SDK](https://github.com/ftctechnh/ftc_app) so it may be used in simulation and on other platforms. Consequently, there is some boilerplate required to integrate the library with the SDK hardware abstractions. Additionally, there are certain peculiarities to the FTC control system that affect the configuration.
 
-In this tour, you will learn simultaneously about Road Runner and the techniques and algorithms behind it. While you may not use all of these components directly, it is imperative to understand them at a high level. Road Runner can be tricky to use effectively, and there are many possible points of failure when it comes to debugging.
+The pages in this section contain more pragmatic material for applying the software in an FTC environment. Before moving on, it is essential that you have read and understand all of the material in the tour. Road Runner can easily become an impenetrable black box that is impossible to debug.
 
-While I've attempted to minimize the math in the tour, it is occasionally necessary to make the explanations precise. If you're curious about the internals, check out the pages under the Advanced section and the whitepapers [here](https://github.com/acmerobotics/road-runner/tree/master/doc/pdf).
-
+The quickstart can be found [here](https://github.com/acmerobotics/road-runner-quickstart).
