@@ -90,5 +90,5 @@ Here's a chart summarizing the effects of each gain on the response:
 
 ![](../.gitbook/assets/pidtuning.png)
 
-If you want a semi-automated approach to tuning, check out the [Ziegler-Nichols method](https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method).
+If you want a semi-automated approach to tuning, check out the [Ziegler-Nichols method](https://en.wikipedia.org/wiki/Ziegler–Nichols_method).
 
