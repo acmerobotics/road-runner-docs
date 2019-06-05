@@ -11,6 +11,7 @@
 * [Coordinate Frames](tour/coordinate-frame.md)
 * [Parametric Paths](tour/parametric-paths.md)
 * [Trajectories](tour/trajectories.md)
+* [Drive Kinematics](tour/drive-kinematics.md)
 
 ## Advanced
 
