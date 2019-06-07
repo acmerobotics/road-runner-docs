@@ -16,7 +16,7 @@ If you're using REV Expansion Hubs, upgrade the firmware to version 1.8.2. It co
 
 ### Drive Class
 
-Select the appropriate built-in drive class from the `org.firstinspires.ftc.teamcode.drive` package and fill in all applicable items marked `// TODO` \(it may be helpful to delete them when you're completely done to keep track\). The optimized REV classes are recommended. The small latency improvements add up quickly and can significantly affect performance. Fill out the `TOOD` items in `DriveConstants`. Road Runner doesn't care about the units you use so long as you are consistent.
+Select the appropriate built-in drive class from the `org.firstinspires.ftc.teamcode.drive` package and fill in all applicable items marked `// TODO` \(it may be helpful to delete them when you're completely done to keep track\). The optimized REV classes are recommended. The small latency improvements add up quickly and can significantly affect performance. Fill out the `TODO` items in `DriveConstants`. Road Runner doesn't care about the units you use so long as you are consistent.
 
 {% hint style="warning" %}
 Errors at this stage often manifest themselves as obvious errors in subsequent tests. For instance, the robot may report driving 30in but it drove 60in instead. Large or multiplicative discrepancies are almost always related to the drive constants.

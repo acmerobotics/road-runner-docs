@@ -1,5 +1,7 @@
 # Initial page
 
+A little motion planning library designed for FTC. Check out the source on [GitHub](https://github.com/acmerobotics/road-runner). 
+
 ## Quickstart
 
 Check out [the quickstart](https://github.com/acmerobotics/road-runner-quickstart) for an example of Road Runner in practice.
