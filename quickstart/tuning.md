@@ -8,7 +8,9 @@ This procedure must be repeated anytime the robot physically change \(e.g., a he
 
 ## Drive
 
-This guide exclusively covers drivetrains as they require the most tuning, and the process is very similar for the other actuators. The subsections below should be followed in order. In general, mistakes/errors in earlier items may affect later items; if a problem is discovered in a previous step, it's best to repeat all of the steps after it. For this reason, it is imperative to check your progress at each step before moving on \(if possible\). Be as methodical and systematic as possible.
+The subsections below should be followed in order. In general, mistakes/errors in earlier items may affect later items; if a problem is discovered in a previous step, it's best to repeat all of the steps after it. For this reason, it is imperative to check your progress at each step before moving on \(if possible\). Be as methodical and systematic as possible.
+
+![Flowchart of the principal steps of the tuning process. If using velocity PID, complete the left branch. Otherwise, complete the right branch.](../.gitbook/assets/quickstartflowchart.png)
 
 ### Upgrade Firmware
 
@@ -24,21 +26,25 @@ Errors at this stage often manifest themselves as obvious errors in subsequent t
 
 ### Drive Velocity PID
 
+**Skip this step if not using the built-in velocity PID.**
+
 It's recommended that you take advantage of the built-in velocity PID \(i.e., `RUN_USING_ENCODER`\) if you have encoders on your drive motors. If you decide to use the built-in PID, it's important to tune the coefficients for your robot \(this is especially true for drivetrains which often have higher loads than other actuators\). Run `DriveVelocityPIDTuner` and adjust the PID gains with the dashboard to minimize the error as best you can. Prioritize eliminating the phase lag even at the cost of some extra oscillations. Finally, uncomment the `setPIDCoefficients()` stub at the bottom of your drive constructor and fill in the new coefficients.
 
 ### Drive Characterization
 
-Remember `kV`, `kA`, and `kStatic` from earlier? Now it's finally time to determine their values. To find `kV` and `kStatic`, the robot executes a quasi-static ramp test where the power is slowly ramped up to minimize acceleration \(it's effectively zero\). Throughout this procedure, the velocity and power are recorded. In the corresponding velocity vs. power graph, `kV` is the slope and `kStatic` is the y-intercept. Next, to find `kA`, the robot attempts to accelerate rapidly from rest. This time, the acceleration, velocity, and power are recorded. The velocity is used to determine the acceleration-only power. The acceleration is then graphed against this new power, and the resulting slope is `kA`.
+**Skip this step if using the built-in velocity PID.**
 
-This procedure is implemented in `DriveFeedforwardTuner`. The DS telemetry prompts will guide you through the process. If you're using the built-in velocity PID, remember to only tune `kV` and nothing else. If you want to do some analysis yourself, the tuner also saves the data to `/sdcard/RoadRunner` on the RC.
+To find `kV` and `kStatic`, the robot executes a quasi-static ramp test where the power is slowly ramped up to minimize acceleration \(it's effectively zero\). Throughout this procedure, the velocity and power are recorded. In the corresponding velocity vs. power graph, `kV` is the slope and `kStatic` is the y-intercept. Next, to find `kA`, the robot attempts to accelerate rapidly from rest. This time, the acceleration, velocity, and power are recorded. The velocity is used to determine the acceleration-only power. The acceleration is then graphed against this new power, and the resulting slope is `kA`.
+
+This procedure is implemented in `DriveFeedforwardTuner`. The DS telemetry prompts will guide you through the process. If you want to do some analysis yourself, the tuner also saves the data to `/sdcard/RoadRunner` on the RC.
 
 To test the characterization, run `StraightTest`. If the robot lands within a few inches of the target, the characterization was successful. If not, repeat the procedure or consider the possibility of an incorrect drive constant. While the tuner works well, it isn't perfect, and you are free to adjust the parameters slightly to get closer to the goal \(keep in mind that feedback will be added later\).
 
 ### Drive Track Width
 
-Although the track width is a physical quantity, different rotation behavior may be observed due to friction, wheel slippage, and other effects. To account for this, we instead compute the empirical track width by measuring the change in drive encoder positions for a given turn angle. This routine was previously implemented in `TrackWidthCalibrationOpMode` although it has been deprecated in favor of `NewTrackWidthCalibrationOpMode` \(you may want to run both to compare\). Before you tune, make sure to set the track width to 1!
+Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle.
 
-To test the track width, run `TurnTest`. If the robot is relatively close to the target, the value is good. Like the characterization, you can manually tweak the track width until sufficient accuracy is obtained \(keep in mind that feedback will be added later\).
+To test this value, run `TurnTest`. If the robot is relatively close to the target, the value is good. Like the characterization, you can manually tweak the track width until sufficient accuracy is obtained \(keep in mind that feedback will be added later\).
 
 ### Follower PID
 
