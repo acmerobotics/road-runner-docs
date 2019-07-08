@@ -48,7 +48,7 @@ With `Vector2d`, rotations are simple:
 {% code-tabs-item title="Java" %}
 ```java
 Vector2d v = new Vector2d(x, y);
-Vecort2d w = v.rotated(rotAngleRad);
+Vector2d w = v.rotated(rotAngleRad);
 ```
 {% endcode-tabs-item %}
 
