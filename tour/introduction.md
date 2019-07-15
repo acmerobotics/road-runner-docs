@@ -4,5 +4,5 @@ Robots are equipped with all sorts of actuators and mechanisms that require soft
 
 In this tour, you will learn simultaneously about Road Runner and the techniques and algorithms behind it. While you may not use all of these components directly, it is imperative to understand them at a high level. Road Runner can be tricky to use effectively, and there are many possible points of failure when it comes to debugging.
 
-While I've attempted to minimize the math in the tour, it is occasionally necessary to make the explanations precise. If you're curious about the internals, check out the pages under the Advanced section and the whitepapers [here](https://github.com/acmerobotics/road-runner/tree/master/doc/pdf).
+While I've attempted to minimize the math in the tour, it is occasionally necessary to make the explanations precise. If you're curious about the internals, check out the pages under the Advanced section.
 
