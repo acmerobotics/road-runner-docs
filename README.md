@@ -12,7 +12,7 @@ Check out [the quickstart](https://github.com/acmerobotics/road-runner-quickstar
 
 1. Open your `ftc_app` project in Android Studio.
 2. Open up the Gradle file for the module you'd like to install in \(probably `TeamCode/build.release.gradle`\).
-3. Add `implementation 'com.acmerobotics.roadrunner:core:0.4.2'` to the end of the `dependencies` block.
+3. Add `implementation 'com.acmerobotics.roadrunner:core:0.4.3'` to the end of the `dependencies` block.
 4. Sync the project \(Android Studio should prompt you to do this\).
 
 {% hint style="warning" %}
