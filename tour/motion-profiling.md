@@ -1,8 +1,8 @@
 # Motion Profiling
 
-For a moment, let's return to the elevator example. While the addition of a gravity feedforward in the last section improves the position control, the PID controller is still doing the majority of the work. When a new position is commanded, the error immediately spikes and the controller saturates, sending the carriage at the mechanism's maximum acceleration. Soon the carriage slows down and overshoots the setpoint a little before settling around the commanded position. While efficient, the sudden acceleration causes unnecessary mechanical and electrical strain. For drivetrain movements, there are additional issues with wheel slippage. Furthermore, the final overshoot wastes time.
+For a moment, let's return to the elevator example. While the addition of a gravity feedforward in the last section improves the position control, the PID controller is still doing the majority of the work to follow step responses. When a new position is commanded, the error immediately spikes and the controller saturates, sending the carriage at the mechanism's maximum acceleration. Soon the carriage slows down and overshoots the setpoint a little before settling around the commanded position. While efficient, the sudden acceleration causes unnecessary mechanical/electrical strain and the resultant overshoot wastes time. For drivetrain movements, there are additional issues with wheel slippage.
 
-The most common solution to this problem is quite simple: put a low cap on actuator speed. This ad-hoc solution only partially addresses the issue at hand and cripples the robot. A better solution is to consider the full kinematic constraints of the system. Instead of just limiting maximum velocity, one should also limit maximum acceleration and maximum jerk \(jerk is the derivative of acceleration\). Before the motion even begins, the control system pre-plans a "motion profile" that describes the robot's position, velocity, etc. over time.
+The most common solution to this problem is simple: put a low cap on actuator speed. This ad-hoc solution only partially addresses the issue at hand and cripples the robot. A better solution is to consider the full kinematic constraints of the system. Instead of just limiting maximum velocity, one should also limit maximum acceleration and maximum jerk \(jerk is the derivative of acceleration\). Before the motion begins, the controller pre-plans a "motion profile" that describes the robot's position, velocity, etc. over time.
 
 ![Jerk-limited 60-inch motion profile \(vmax = 25 in/s, amax = 40 in/s^2, jmax = 100 in/s^3\)](../.gitbook/assets/sample-jerk-limited-profile.png)
 
@@ -42,14 +42,26 @@ To follow the profile, simply feed the velocity and acceleration for the corresp
 {% code-tabs-item title="Java" %}
 ```java
 MotionState state = profile.get(elapsedTime);
-double correction = controller.update(position, state.v, state.a);
+
+controller.setTargetPosition(state.x);
+controller.setTargetVelocity(state.v);
+controller.setTargetAcceleration(state.a);
+
+double correction = controller.update(measuredPosition);
 ```
 {% endcode-tabs-item %}
 
 {% code-tabs-item title="Kotlin" %}
 ```kotlin
 val state = profile[elapsedTime]
-val correction = controller.update(position, state.v, state.a)
+
+controller.apply {
+    targetPosition = state.x
+    targetPosition = state.v
+    targetPosition = state.a
+}
+
+val correction = controller.update(measuredPosition)
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}

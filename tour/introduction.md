@@ -1,8 +1,8 @@
 # Introduction
 
-Robots are equipped with all sorts of actuators and mechanisms that require software. In some situations, these needs may be adequately addressed through teleoperation and a human driver. However, in the majority of cases, full or partial automation is crucial. For this purpose, Road Runner provides robust solutions for motion planning and control. 
+Robots are equipped with all sorts of actuators and mechanisms that require software to operate. While human teleoperation may be adequate in some situations, partial or full automation can dramatically improve performance in many situations. For this purpose, Road Runner provides robust solutions for motion planning and execution.
 
-In this tour, you will learn simultaneously about Road Runner and the techniques and algorithms behind it. While you may not use all of these components directly, it is imperative to understand them at a high level. Road Runner can be tricky to use effectively, and there are many possible points of failure when it comes to debugging.
+In this tour, you will learn simultaneously about Road Runner and the techniques and algorithms behind it. While you may not use all of these components directly, it is imperative to at least have a high-level understanding of what's going on under the hood. The complexity of Road Runner can present pitfalls for beginning users, and debugging is near impossible without general intuition about the system.
 
-While I've attempted to minimize the math in the tour, it is occasionally necessary to make the explanations precise. If you're curious about the internals, check out the pages under the Advanced section.
+I've attempted to minimize the math in the tour, but it is occasionally necessary to make the explanations precise. If you'd like to delve even further into the details, check out the resources on [this page](../advanced/resources.md).
 
