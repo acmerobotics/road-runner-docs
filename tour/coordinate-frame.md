@@ -1,12 +1,12 @@
 # Coordinate Frames
 
-The previous discussion of motion profiling wraps up motion control for mechanisms with one degree of freedom. The remainder of the tour will be extending these ideas to 2D robot movement.
+The previous discussion of motion profiling wraps up motion control for mechanisms with one degree of freedom. The remainder of the tour will extend these ideas to 2D robot movement.
 
 ## Basics
 
 In order to describe 2D motion, we need a consistent global coordinate frame. Within this global frame, the robot's position can be described using typical Cartesian $$(x,y)$$ coordinates. In addition to the linear position, the robot has a heading $$\theta$$ defined as the angle between the front of the robot and the global $$x$$ axis. The position and heading together constitute the robot's pose.
 
-2D vectors and poses are built into the library and serve as primtiives for many other classes.
+2D vectors and poses are built into the library and serve as primitives for many other classes.
 
 {% code-tabs %}
 {% code-tabs-item title="Java" %}
@@ -32,17 +32,17 @@ In addition to the global coordinate frame, there is a robot coordinate frame th
 
 ![Transformation of a velocity vector between frames](../.gitbook/assets/transform.png)
 
-Consider a velocity vector $$\vec{v}_G$$ in the global frame. To find the equivalent representation $$\vec{v}_G$$in the global frame, we will apply a rotation transformation. This transformation can be represented by the following matrix:
+Consider a velocity vector $$\vec{v}_G$$ in the global frame. To find the equivalent representation $$\vec{v}_R$$in the robot frame, we can apply a rotation transformation. This transformation can be represented by the following matrix:
 
 {% hint style="info" %}
-If you're not familiar with linear algebra, no worries. 3Blue1Brown has an awesome series on the [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab). The first four videos are the most relevant to this section.
+If you haven't seen matrices and vectors before, check out 3Blue1Brown's series [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab). The first four videos are the most relevant to this section, although I strongly recommend all of them.
 {% endhint %}
 
 ![2D rotation matrix](../.gitbook/assets/rotmat.png)
 
 With this matrix, the transformation is simple: $$\vec{v}_G = R(\theta) \, \vec{v}_R$$. Since the inverse of $$R(\theta)$$ is just $$R(-\theta)$$, $$\vec{v}_R = R(-\theta) \, \vec{v}_G$$. Note the angular velocity $$\omega$$ remains the same between frames.
 
-With `Vector2d`, rotations are simple:
+As you might expect, rotations are built into the `Vector2d` class:
 
 {% code-tabs %}
 {% code-tabs-item title="Java" %}
