@@ -64,3 +64,4 @@ At this point, run `SplineTest`. If the robot successfully follows the spline, i
 
 Once `SplineTest` works well, you can run `FollowerPIDTuner` and tune the follower PID controllers. Typically only a P controller is required \(on occasion a PD is justifiable\). This should get the last 10% tracking accuracy.
 
+There are two follower PID controllers. The first is the translational PID controller, which tries to correct the position of the robot to where it is supposed to be on the path. The second is the heading PID controller, which tries to correct the heading of the rbot to where it is supposed to be on the path.
