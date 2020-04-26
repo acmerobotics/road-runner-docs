@@ -48,7 +48,7 @@ To test the first few steps, run `StraightTest`. If the robot lands within a few
 
 ## Drive Track Width
 
-Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle.
+Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle. Before running the TrackWithTuner opmode, you must ensure that an external gyroscope is to determine the heading, rather than drive encoders.
 
 If you have problems with the automated tuner, you can try adjusting the track width by hand using `TurnTest`. If you decide to do this, make sure to test a variety of angles; it's more important that the value works OK across different angles than it works perfectly for a single angle.
 
