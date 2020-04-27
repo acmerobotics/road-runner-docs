@@ -23,7 +23,7 @@ MotionProfile profile = MotionProfileGenerator.generateSimpleMotionProfile(
 ```
 {% endcode-tabs-item %}
 
-{% code-tabs-item title=undefined %}
+{% code-tabs-item title="Kotlin" %}
 ```kotlin
 val profile = MotionProfileGenerator.generateSimpleMotionProfile(
     MotionState(0.0, 0.0, 0.0),
