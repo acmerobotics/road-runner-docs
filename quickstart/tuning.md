@@ -48,7 +48,7 @@ To test the first few steps, run `StraightTest`. If the robot lands within a few
 
 ## Drive Track Width
 
-Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle. Before running the TrackWithTuner opmode, you must ensure that an external gyroscope is to determine the heading, rather than drive encoders.
+Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle. Before running the TrackWithTuner opmode, you must ensure that an external gyroscope is used to determine the heading, rather than drive encoders.
 
 If you have problems with the automated tuner, you can try adjusting the track width by hand using `TurnTest`. If you decide to do this, make sure to test a variety of angles; it's more important that the value works OK across different angles than it works perfectly for a single angle.
 
@@ -62,6 +62,6 @@ At this point, run `SplineTest`. If the robot successfully follows the spline, i
 
 ## Follower PID
 
-Once `SplineTest` works well, you can run `FollowerPIDTuner` and tune the follower PID controllers. Typically only a P controller is required \(on occasion a PD is justifiable\). This should get the last 10% tracking accuracy.
+Once `SplineTest` works well, you can run `FollowerPIDTuner` and tune the follower PID controllers. Typically only a P controller is required \(on occasion a PD is justifiable\). This should get the last 10% tracking accuracy. The goal for the FollowedPIDTuner is to have the robot driving around in a square. The square should remain relatively consistent over time.
 
 There are two follower PID controllers. The first is the translational PID controller, which tries to correct the position of the robot to where it is supposed to be on the path. The second is the heading PID controller, which tries to correct the heading of the rbot to where it is supposed to be on the path.
