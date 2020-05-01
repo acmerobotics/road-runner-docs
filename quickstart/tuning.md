@@ -28,6 +28,8 @@ Errors at this stage often manifest themselves as obvious errors in subsequent t
 
 Run `LocalizationTest` and the drive the robot around the field with the gamepads. Make sure that the robot's pose estimate corresponds with reality. While small errors may be attributed to intrinsic inaccuracy of the localizer, large errors (especially multiplicative errors) are indicative of improper drive/localizer constants. If you are using an external gyroscope, and the heading of the robot is not updated, ensure that the hub's orientation in the code matches its orientation in reality. It's important to discover these configuration errors early and fix them before proceeding prematurely.
 
+When using mecanum wheels and the MecanumLocalizer, strafing is likely to result in multiplicative errors. This is due to the nature of mecanum wheels - they slip when strafing. To solve this, either use ThreeWheelTrackingLocalizer or TwoWheelTrackingLocalizer, or refrain from strafing during opmodes that require the localizer.
+
 ## Drive Velocity PID
 
 **Skip this step if not using the built-in velocity PID.**
