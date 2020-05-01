@@ -44,7 +44,7 @@ This procedure is implemented in `DriveFeedforwardTuner`. The DS telemetry promp
 
 ## Straight Test
 
-To test the first few steps, run `StraightTest`. If the robot lands within a few inches of the target, these steps were successful. If not, repeat the procedures or consider the possibility of an incorrect drive constant (especially if using the built-in motor velocity PID). If this is still unsuccessful,you are free to adjust the parameters (i.e. `kV`, `kA`, and `kStatic` or the PID coefficients for the motors) slightly to get closer to the goal \(keep in mind that feedback will be added later, so the tuning doesn't need to be perfect at the end of this step\).
+To test the first few steps, run `StraightTest`. If the robot lands within a few inches of the target, these steps were successful. If not, repeat the procedures or consider the possibility of an incorrect drive constant (especially if using the built-in motor velocity PID). If this is still unsuccessful,you are free to adjust the parameters (i.e. `kV`, `kA`, and `kStatic` or the PID coefficients for the motors) slightly to get closer to the goal \(because follower PID will be added later, it's okay if the robot does not travel perfectly straight or slightly over-/under-shoots the target, but big errors likely indicate tuning problems\).
 
 ## Drive Track Width
 
