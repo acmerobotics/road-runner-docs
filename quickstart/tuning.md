@@ -26,7 +26,7 @@ Errors at this stage often manifest themselves as obvious errors in subsequent t
 
 ## Localization Test
 
-Run `LocalizationTest` and the drive the robot around the field with the gamepads. Make sure that the robot's pose estimate corresponds with reality. While small errors may be attributed to intrinsic inaccuracy of the localizer, large errors are indicative of improper drive/localizer constants. It's important to discover these configuration errors early and fix them before proceeding prematurely.
+Run `LocalizationTest` and the drive the robot around the field with the gamepads. Make sure that the robot's pose estimate corresponds with reality. While small errors may be attributed to intrinsic inaccuracy of the localizer, large errors (especially multiplicative errors) are indicative of improper drive/localizer constants. If you are using an external gyroscope, and the heading of the robot is not updated, ensure that the hub's orientation in the code matches its orientation in reality. It's important to discover these configuration errors early and fix them before proceeding prematurely.
 
 ## Drive Velocity PID
 
