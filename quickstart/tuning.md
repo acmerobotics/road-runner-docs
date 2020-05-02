@@ -26,7 +26,9 @@ Errors at this stage often manifest themselves as obvious errors in subsequent t
 
 ## Localization Test
 
-Run `LocalizationTest` and the drive the robot around the field with the gamepads. Make sure that the robot's pose estimate corresponds with reality. While small errors may be attributed to intrinsic inaccuracy of the localizer, large errors are indicative of improper drive/localizer constants. It's important to discover these configuration errors early and fix them before proceeding prematurely.
+Run `LocalizationTest` and the drive the robot around the field with the gamepads. Make sure that the robot's pose estimate corresponds with reality. While small errors may be attributed to intrinsic inaccuracy of the localizer, large errors (especially multiplicative errors) are indicative of improper drive/localizer constants. If you are using an external gyroscope, and the heading of the robot is not updated, ensure that the hub's orientation in the code matches its orientation in reality. It's important to discover these configuration errors early and fix them before proceeding prematurely.
+
+When using mecanum wheels and the MecanumLocalizer, strafing is likely to result in multiplicative errors. This is due to the nature of mecanum wheels - they slip when strafing. To solve this, either use ThreeWheelTrackingLocalizer or TwoWheelTrackingLocalizer, or refrain from strafing during opmodes that require the localizer.
 
 ## Drive Velocity PID
 
@@ -42,13 +44,17 @@ To find `kV` and `kStatic`, the robot executes a quasi-static ramp test where th
 
 This procedure is implemented in `DriveFeedforwardTuner`. The DS telemetry prompts will guide you through the process. If you want to do some analysis yourself, the tuner also saves the data to `/sdcard/RoadRunner` on the RC.
 
+{% hint style="warning" %}
+The tuning for kA in the DriveFeedforwardTuner is known to not be great. While an okay starting point, if there are significant issues with StraightTest, kA may require manual tuning.
+{% endhint %}
+
 ## Straight Test
 
-To test the first few steps, run `StraightTest`. If the robot lands within a few inches of the target, these steps were successful. If not, repeat the procedures or consider the possibility of an incorrect drive constant (especially if using the built-in motor velocity PID). If this is still unsuccessful,you are free to adjust the parameters (i.e., `kV`, `kA`, and `kStatic` in `DriveConstants`) slightly to get closer to the goal \(keep in mind that feedback will be added later\).
+To test the first few steps, run `StraightTest`. If the robot lands within a few inches of the target, these steps were successful. If not, repeat the procedures or consider the possibility of an incorrect drive constant (especially if using the built-in motor velocity PID). If this is still unsuccessful,you are free to adjust the parameters (i.e. `kV`, `kA`, and `kStatic` or the PID coefficients for the motors) slightly to get closer to the goal \(because follower PID will be added later, it's okay if the robot does not travel perfectly straight or slightly over-/under-shoots the target, but big errors likely indicate tuning problems\).
 
 ## Drive Track Width
 
-Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle.
+Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle. Before running the TrackWithTuner opmode, you must ensure that an external gyroscope is used to determine the heading, rather than drive encoders.
 
 If you have problems with the automated tuner, you can try adjusting the track width by hand using `TurnTest`. If you decide to do this, make sure to test a variety of angles; it's more important that the value works OK across different angles than it works perfectly for a single angle.
 
@@ -62,5 +68,6 @@ At this point, run `SplineTest`. If the robot successfully follows the spline, i
 
 ## Follower PID
 
-Once `SplineTest` works well, you can run `FollowerPIDTuner` and tune the follower PID controllers. Typically only a P controller is required \(on occasion a PD is justifiable\). This should get the last 10% tracking accuracy.
+Once `SplineTest` works well, you can run `FollowerPIDTuner` and tune the follower PID controllers. Typically only a P controller is required \(on occasion a PD is justifiable\). This should get the last 10% tracking accuracy. The goal for the FollowedPIDTuner is to have the robot driving around in a square. The square should remain relatively consistent over time.
 
+There are two follower PID controllers. The first is the translational PID controller, which tries to correct the position of the robot to where it is supposed to be on the path. The second is the heading PID controller, which tries to correct the heading of the rbot to where it is supposed to be on the path.
