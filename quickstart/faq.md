@@ -4,11 +4,11 @@
 
     First off, determine whether the localization is off or the controller is sloppy. If the localizer is off, consider changing to something like tracking wheels or reign in the constraints (at least reduce accel/angular velocity). If the localizer is roughly on target, you can try adding feedback (and also probably reducing the constraints).
 
-- How do I integrate ``odometry'' with RR?
+- How do I integrate "odometry" with RR?
 
     Read [this page](../tour/kinematics.md).
 
-- Can I use Road Runner without ``odometry''?
+- Can I use Road Runner without "odometry"?
 
     Yes, that's the default.
 
