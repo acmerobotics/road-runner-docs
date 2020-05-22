@@ -32,7 +32,13 @@ Run `LocalizationTest` and the drive the robot around the field with the gamepad
 
 **Skip this step if not using the built-in velocity PID.**
 
-It's recommended that you take advantage of the built-in motor velocity PID \(i.e., `RUN_USING_ENCODER`\) if you have encoders on your drive motors. If you decide to use the built-in PID, it's important to tune the coefficients for your robot \(this is especially true for drivetrains which often have higher loads than other actuators\). Run `DriveVelocityPIDTuner` and adjust the PID gains with the dashboard to minimize the error as best you can. Prioritize eliminating the phase lag even at the cost of some extra oscillations. Fill in `DriveConstants.MOTOR_VELO_PID` with the new coefficients when you're finished.
+It's recommended that you take advantage of the built-in motor velocity PID \(i.e., `RUN_USING_ENCODER`\) if you have encoders on your drive motors. If you decide to use the built-in PID, it's important to tune the coefficients for your robot \(this is especially true for drivetrains which often have higher loads than other actuators\). Run `DriveVelocityPIDTuner` and adjust the PID gains with the dashboard to minimize the error as best you can (note: the tuning variable will not appear until the op mode finishs initializing). Here is a rough procedure:
+
+1. Increase kP until any phase lag is eliminated. Concurrently increase kD as necessary to mitigate oscillations.
+1. Add kI (or adjust kF) until the steady state/constant velocity plateaus are reached.
+1. Back off kP and kD a little until the response is less oscillatory (but without lag).
+
+Fill in `DriveConstants.MOTOR_VELO_PID` with the new coefficients when you're finished.
 
 ## Drive Characterization
 
@@ -48,7 +54,7 @@ To test the first few steps, run `StraightTest`. If the robot lands within a few
 
 ## Drive Track Width
 
-Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes the empirical track width by measuring the change in drive encoder positions for a given turn angle.
+Although track width is a physical quantity, different rotation behavior may be observed due to scrub and other effects. To account for this, `TrackWidthTuner` computes an empirical track width that is better suited for feedforward.
 
 If you have problems with the automated tuner, you can try adjusting the track width by hand using `TurnTest`. If you decide to do this, make sure to test a variety of angles; it's more important that the value works OK across different angles than it works perfectly for a single angle.
 
