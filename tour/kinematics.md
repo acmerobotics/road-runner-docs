@@ -30,9 +30,9 @@ Road Runner provides built-in localizers for tracking wheels. This configuration
 public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer {
     public StandardTrackingWheelLocalizer() {
         super(Arrays.asList(
-                new Pose2d(5.4, 14.2, 0.0), // left parallel
-                new Pose2d(5.2, -14.2, 0.0), // right parallel
-                new Pose2d(-7.5, -0.3, Math.toRadians(90)) // perpendicular
+                new Pose2d(2.6, 7.1, 0.0), // left parallel
+                new Pose2d(2.6, -7.1, 0.0), // right parallel
+                new Pose2d(-3.75, -0.15, Math.toRadians(90)) // perpendicular
         ));
     }
 
@@ -48,9 +48,9 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
 {% code-tabs-item title="Kotlin" %}
 ```kotlin
 class StandardTrackingWheelLocalizer : ThreeTrackingWheelLocalizer(listOf(
-    Pose2d(5.4, 14.2, 0.0), // left parallel
-    Pose2d(5.2, -14.2, 0.0), // right parallel
-    Pose2d(-7.5, -0.3, Math.toRadians(90.0)) // perpendicular
+    Pose2d(2.6, 7.1, 0.0), // left parallel
+    Pose2d(2.6, -7.1, 0.0), // right parallel
+    Pose2d(-3.75, -0.15, Math.toRadians(90.0)) // perpendicular
 )) {
     override fun getWheelPositions(): List<Double> {
         // return list of encoder readings in inches
