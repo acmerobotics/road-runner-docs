@@ -57,8 +57,8 @@ val state = profile[elapsedTime]
 
 controller.apply {
     targetPosition = state.x
-    targetPosition = state.v
-    targetPosition = state.a
+    targetVelocity = state.v
+    targetAcceleration = state.a
 }
 
 val correction = controller.update(measuredPosition)
