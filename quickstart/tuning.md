@@ -46,7 +46,7 @@ Fill in `DriveConstants.MOTOR_VELO_PID` with the new coefficients when you're fi
 
 To find `kV` and `kStatic`, the robot executes a quasi-static ramp test where the power is slowly ramped up to minimize acceleration \(it's effectively zero\). Throughout this procedure, the velocity and power are recorded. In the corresponding velocity vs. power graph, `kV` is the slope and `kStatic` is the y-intercept. Next, to find `kA`, the robot attempts to accelerate rapidly from rest. This time, the acceleration, velocity, and power are recorded. The velocity is used to determine the acceleration-only power. The acceleration is then graphed against this new power, and the resulting slope is `kA`.
 
-This procedure is implemented in `DriveFeedforwardTuner`. The DS telemetry prompts will guide you through the process. If you want to do some analysis yourself, the tuner also saves the data to `/sdcard/RoadRunner` on the RC.
+This procedure is implemented in `AutomaticFeedforwardTuner`. The DS telemetry prompts will guide you through the process. If you want to do some analysis yourself, the tuner also saves the data to `/sdcard/RoadRunner` on the RC.
 
 ## Straight Test
 
