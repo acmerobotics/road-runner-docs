@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Initial page](README.md)
-* [KDoc](https://acmerobotics.github.io/road-runner/core/0.5.1/kdoc/index.html)
-* [Javadoc](https://acmerobotics.github.io/road-runner/core/0.5.1/javadoc/index.html)
+* [KDoc](https://acmerobotics.github.io/road-runner/core/0.5.2/kdoc/index.html)
+* [Javadoc](https://acmerobotics.github.io/road-runner/core/0.5.2/javadoc/index.html)
 
 ## Tour
 
