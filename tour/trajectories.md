@@ -7,20 +7,28 @@ Here's a sample for planning a `Trajectory` from a `Path`:
 {% code-tabs %}
 {% code-tabs-item title="Java" %}
 ```java
-DriveConstraints constraints = new DriveConstraints(20, 40, 80, 1, 2, 4);
-Trajectory traj = TrajectoryGenerator.generateTrajectory(path, constraints);
+TrajectoryVelocityConstraint velConstraint = new MinVelocityConstraint(Arrays.asList(
+    new TranslationalVelocityConstraint(20),
+    new AngularVelocityConstraint(1)
+));
+TrajectoryAccelerationConstraint accelConstraint = new ProfileAccelerationConstraint(40);
+Trajectory traj = TrajectoryGenerator.generateTrajectory(path, velConstraint, accelConstraint);
 ```
 {% endcode-tabs-item %}
 
 {% code-tabs-item title="Kotlin" %}
 ```kotlin
-val constraints = DriveConstraints(20.0, 40.0, 80.0, 1.0, 2.0, 4.0)
-val traj = TrajectoryGenerator.generateTrajectory(path, constraints)
+val velConstraint = MinVelocityConstraint(listOf(
+    TranslationalVelocityConstraint(20.0),
+    AngularVelocityConstraint(1.0)
+))
+val accelConstraint = ProfileAccelerationConstraint(40.0)
+val traj = TrajectoryGenerator.generateTrajectory(path, velConstraint, accelConstraint)
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The base `DriveConstraints` class does **robot** velocity and acceleration limiting, while its drive-specific subclasses \(e.g., `MecanumConstraints`\) actually limit **wheel** velocity.
+As indicated by their names, the constraints limit translational velocity, angular velocity, and profile acceleration. It's common to replace the translational velocity constraint with a stronger constraint that limits wheel velocities. These constraints are named according to the drive types (e.g., `MecanumVelocityConstraint`).
 
 {% hint style="info" %}
 There is also a `TrajectoryBuilder` class that replicates the API of `PathBuilder` with a few additions.
