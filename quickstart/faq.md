@@ -18,4 +18,4 @@
 
 - How do I optimize read times?
 
-    Read times are minimized by the use of automatic bulk reads implemented in SDK v5.4 and later. Keep in mind the quickstart enables these optimizations for all code. There is also a [known issue](https://github.com/FIRST-Tech-Challenge/SkyStone/issues/232) with handling in exceptional cases that will hopefully be fixed in the next release.
+    Read times are minimized by the use of automatic bulk reads implemented in SDK v5.4 and later. Keep in mind the quickstart enables these optimizations for all code.
