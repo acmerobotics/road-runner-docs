@@ -1,5 +1,8 @@
 # Resources
 
+To see the math at work in a toy version of the library, check out [this notebook](https://github.com/acmerobotics/road-runner/blob/master/doc/notebook/road-runner-lite.ipynb). Click [this link](
+https://mybinder.org/v2/gh/acmerobotics/road-runner/HEAD?filepath=doc%2Fnotebook%2Froad-runner-lite.ipynb) to open it interactively in your browser.
+
 Road Runner makes use of algorithms and techniques described in the following papers:
 
 * [Mobile Robot Kinematics for FTC](https://github.com/acmerobotics/road-runner/blob/master/doc/pdf/Mobile_Robot_Kinematics_for_FTC.pdf)
