@@ -11,7 +11,7 @@ Check out the [quickstart](https://github.com/acmerobotics/road-runner-quickstar
 ### Core \(FTC\)
 
 1. Open `build.dependencies.gradle` and add `maven { url = 'https://maven.brott.dev/' }` to the end of the `repositories` block.
-1. Open `TeamCode/build.gradle` and add `implementation 'com.acmerobotics.roadrunner:core:0.5.3'` to the end of the `dependencies` block.
+1. Open `TeamCode/build.gradle` and add `implementation 'com.acmerobotics.roadrunner:core:0.5.5'` to the end of the `dependencies` block.
 1. Sync the project \(Android Studio should prompt you to do this\).
 
 {% hint style="warning" %}
